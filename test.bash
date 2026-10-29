@@ -1,13 +1,15 @@
 #!/bin/bash
-
-ng () {                         # 関数ngの定義
-        echo ${1}行目のテスト失敗 # $1はngの1番目の引数
+# SPDX-FileCopyrightText:2026 Yoshiaki Iwasawa
+# SPDX-License-Identifier: BSD-3-Clause
+ng () {                         
+        echo ${1}行目のテスト失敗 
 	res=1
 }
 
 res=0
-a=鈴木
-[ "$a" = 鈴本 ] || ng "$LINENO"
-[ "$a" = 鈴木 ] || ng "$LINENO"
 
-exit $res                            # 関数ngを呼び出す(123が$1に入る)
+out=$(seq 5 | ./plus)
+[ "${out}" = 15 ] || ng "$LINENO"
+
+[ "${res}" = 0 ] && echo OK
+exit $res                            
